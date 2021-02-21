@@ -20,7 +20,7 @@ local size = 128
 local textureID = 449490
 local soundID = 16552
 local color = {1, 0.5, 0.5, 0.9}
-local firestormAuras = {333097, 333100, 1459}
+local firestormAuras = {333097, 333100}
 local hadFirestorm, hasFirestorm = false, false
 
 local function contains(table, input)
