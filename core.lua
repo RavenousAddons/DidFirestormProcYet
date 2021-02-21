@@ -7,8 +7,8 @@ setmetatable(L, { __index = function(t, k)
     return v
 end })
 L.Version = "%s is the current version." -- ns.version
-L.Install = "Thanks for installing |cff%1$sv%2$s|r! You can toggle sound with |cff%1$s/%3$s sound|r." -- ns.color, ns.version, ns.command
-L.Update = "Thanks for updating to |cff%1$sv%2$s|r! You can toggle sound with |cff%1$s/%3$s sound|r." -- ns.color, ns.version, ns.command
+L.Install = "Thanks for installing |cff%1$sv%2$s|r!" -- ns.color, ns.version
+L.Update = "Thanks for updating to |cff%1$sv%2$s|r!" -- ns.color, ns.version
 L.How = "Type |cff%1$s/%2$s sound|r to toggle sounds." -- ns.color, ns.command
 L.Support = "For feedback and support: |cff%1$s%2$s|r" -- ns.color ns.discord
 L.Sound = "Sounds are %s." -- ON/OFF
@@ -33,7 +33,7 @@ local function contains(table, input)
 end
 
 local function PrettyPrint(message)
-    DEFAULT_CHAT_FRAME:AddMessage("|cff" .. ns.color .. ns.name .. "|r\n" .. message)
+    DEFAULT_CHAT_FRAME:AddMessage("|cff" .. ns.color .. ns.name .. "|r " .. message)
 end
 
 function ns:DFPY_Build()
@@ -100,14 +100,15 @@ function DFPY_OnEvent(self, event, arg, ...)
     if event == "UNIT_AURA" and arg == "player" then
         ns:DFPY_Check()
     elseif event == "PLAYER_LOGIN" then
+        if DFPY_sound == nil then DFPY_sound = true end
         if not DFPY_version then
-            PrettyPrint(string.format(L.Install, ns.color, ns.version))
+            PrettyPrint("\n" .. string.format(L.Install, ns.color, ns.version) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
         elseif DFPY_version ~= ns.version then
-            ns:PrettyPrint(string.format(L.Update, ns.color, ns.version, ns.command))
+            PrettyPrint("\n" .. string.format(L.Update, ns.color, ns.version, ns.command) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
+        else
+            PrettyPrint(string.format(L.Sound, DFPY_sound and L.On or L.Off))
         end
         DFPY_version = ns.version
-        if DFPY_sound == nil then DFPY_sound = true end
-        PrettyPrint(string.format(L.Sound, DFPY_sound and L.On or L.Off) .. " " .. string.format(L.How, ns.color, ns.command))
         ns:DFPY_Build()
         ns:DFPY_Check()
         self:UnregisterEvent("PLAYER_LOGIN")
@@ -115,13 +116,13 @@ function DFPY_OnEvent(self, event, arg, ...)
 end
 
 SlashCmdList["DFPY"] = function(message, editbox)
-    if message == "v" or string.match(message, "vers") then
+    if string.match(message, "v") then
         PrettyPrint(string.format(L.Version, ns.version))
-    elseif message == "h" or string.match(message, "he") then
-        PrettyPrint(string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Support, ns.color, ns.discord))
-    elseif message == "s" or string.match(message, "sou") then
+    elseif string.match(message, "s") then
         DFPY_sound = not DFPY_sound
         PrettyPrint(string.format(L.Sound, DFPY_sound and L.On or L.Off))
+    else
+        PrettyPrint("\n" .. string.format(L.How, ns.color, ns.command) .. "\n" .. string.format(L.Support, ns.color, ns.discord))
     end
 end
 SLASH_DFPY1 = "/" .. ns.command
