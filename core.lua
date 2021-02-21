@@ -36,7 +36,7 @@ local function PrettyPrint(message)
     DEFAULT_CHAT_FRAME:AddMessage("|cff" .. ns.color .. ns.name .. "|r " .. message)
 end
 
-function ns:DFPY_Build()
+local function DFPY_Build()
     self.Display = CreateFrame("Frame", ADDON_NAME .. "Display", UIParent)
     self.Display:SetFrameStrata("LOW")
     self.Display:SetWidth(size * 4)
@@ -61,7 +61,7 @@ function ns:DFPY_Build()
     self.Display:Hide()
 end
 
-function ns:DFPY_Check()
+local function DFPY_Check()
     if not self.Display then
         return
     end
@@ -98,19 +98,24 @@ end
 
 function DFPY_OnEvent(self, event, arg, ...)
     if event == "UNIT_AURA" and arg == "player" then
-        ns:DFPY_Check()
+        DFPY_Check()
     elseif event == "PLAYER_LOGIN" then
-        if DFPY_sound == nil then DFPY_sound = true end
-        if not DFPY_version then
-            PrettyPrint("\n" .. string.format(L.Install, ns.color, ns.version) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
-        elseif DFPY_version ~= ns.version then
-            PrettyPrint("\n" .. string.format(L.Update, ns.color, ns.version, ns.command) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
+        local _, class = UnitClass("player")
+        if class == "MAGE" then
+            if DFPY_sound == nil then DFPY_sound = true end
+            if not DFPY_version then
+                PrettyPrint("\n" .. string.format(L.Install, ns.color, ns.version) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
+            elseif DFPY_version ~= ns.version then
+                PrettyPrint("\n" .. string.format(L.Update, ns.color, ns.version, ns.command) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
+            else
+                PrettyPrint(string.format(L.Sound, DFPY_sound and L.On or L.Off))
+            end
+            DFPY_version = ns.version
+            DFPY_Build()
+            DFPY_Check()
         else
-            PrettyPrint(string.format(L.Sound, DFPY_sound and L.On or L.Off))
+            self:UnregisterEvent("UNIT_AURA")
         end
-        DFPY_version = ns.version
-        ns:DFPY_Build()
-        ns:DFPY_Check()
         self:UnregisterEvent("PLAYER_LOGIN")
     end
 end
