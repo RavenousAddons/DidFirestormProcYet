@@ -1,0 +1,16 @@
+## Interface: 90002
+## Version: 1.0.0
+
+## Name: Did Firestorm Proc Yet?
+## Title: Did |cffff8000Firestorm|r Proc Yet?
+## Notes: Simple, dependency-free tracking for your Firestorm procs, whenever those may be...
+## Author: RavenousAddons
+
+## SavedVariables: DFPY_version, DFPY_sound
+
+## X-License: Public Domain
+## X-Website: https://github.com/RavenousAddons/DidFirestormProcYet
+## X-Curse-Project-ID: 274452
+## X-WoWI-ID: 24005
+
+DidFirestormProcYet.xml

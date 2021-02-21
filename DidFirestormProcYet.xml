@@ -1,0 +1,11 @@
+<Ui>
+    <Script file="metadata.lua" />
+    <Script file="core.lua" />
+
+    <Frame name="DidFirestormProcYet">
+        <Scripts>
+            <OnLoad function="DFPY_OnLoad" />
+            <OnEvent function="DFPY_OnEvent" />
+        </Scripts>
+    </Frame>
+</Ui>
