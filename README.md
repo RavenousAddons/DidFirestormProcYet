@@ -4,7 +4,7 @@
 
 # What does it do?
 
-For reasons that are beyond my comprehension, there is no visual or audio cue for when [Firestorm](https://www.wowhead.com/spell=333097/firestorm), a [Shadowlands Fire Mage Legendary](https://www.wowhead.com/item=183275/memory-of-the-firestorm).
+For reasons that are beyond my comprehension, there is no visual or audio cue for when [Firestorm](https://www.wowhead.com/spell=333097/firestorm), a [Shadowlands Fire Mage Legendary](https://www.wowhead.com/item=183275/memory-of-the-firestorm), activates.
 
 Without any other dependencies or any necessary set-up, this Addon simply adds a Blizzard-like visual and audio cue to the proc of *Firestorm*.
 
