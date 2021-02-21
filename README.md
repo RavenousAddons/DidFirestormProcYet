@@ -2,8 +2,6 @@
 
 *Simple, dependency-free tracking for your Firestorm procs, whenever those may be...*
 
-![The Addon's Interface](https://github.com/RavenousAddons/assets/raw/main/ravFor0.6.0.png)
-
 # What does it do?
 
 For reasons that are beyond my comprehension, there is no visual or audio cue for when [Firestorm](https://www.wowhead.com/spell=333097/firestorm), a [Shadowlands Fire Mage Legendary](https://www.wowhead.com/item=183275/memory-of-the-firestorm).
