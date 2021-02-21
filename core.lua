@@ -79,7 +79,6 @@ local function DFPY_Check()
         if sound then
             PlaySound(soundID, "SFX")
         end
-        UIFrameFadeIn(ns.Display, 0.05, 0, 1)
         ns.Display:Show()
         C_Timer.After(duration - 0.2, function()
             UIFrameFadeOut(ns.Display, 0.2, 1, 0)
