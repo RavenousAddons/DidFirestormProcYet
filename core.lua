@@ -37,20 +37,20 @@ local function PrettyPrint(message)
 end
 
 local function DFPY_Build()
-    self.Display = CreateFrame("Frame", ADDON_NAME .. "Display", UIParent)
-    self.Display:SetFrameStrata("LOW")
-    self.Display:SetWidth(size * 4)
-    self.Display:SetHeight(size * 2)
-    self.Display:SetPoint("CENTER", 0, 0)
+    ns.Display = CreateFrame("Frame", ADDON_NAME .. "Display", UIParent)
+    ns.Display:SetFrameStrata("LOW")
+    ns.Display:SetWidth(size * 4)
+    ns.Display:SetHeight(size * 2)
+    ns.Display:SetPoint("CENTER", 0, 0)
 
-    local l = self.Display:CreateTexture()
+    local l = ns.Display:CreateTexture()
     l:SetWidth(size)
     l:SetHeight(size * 2)
     l:SetPoint("LEFT", 0, 0)
     l:SetTexture(textureID)
     l:SetVertexColor(color[1], color[2], color[3], color[4])
 
-    local r = self.Display:CreateTexture()
+    local r = ns.Display:CreateTexture()
     r:SetWidth(size)
     r:SetHeight(size * 2)
     r:SetPoint("RIGHT", 0, 0)
@@ -58,11 +58,11 @@ local function DFPY_Build()
     r:SetVertexColor(color[1], color[2], color[3], color[4])
     r:SetTexCoord(1, 0, 0, 1)
 
-    self.Display:Hide()
+    ns.Display:Hide()
 end
 
 local function DFPY_Check()
-    if not self.Display then
+    if not ns.Display then
         return
     end
 
@@ -79,13 +79,13 @@ local function DFPY_Check()
         if sound then
             PlaySound(soundID, "SFX")
         end
-        UIFrameFadeIn(self.Display, 0.05, 0, 1)
-        self.Display:Show()
+        UIFrameFadeIn(ns.Display, 0.05, 0, 1)
+        ns.Display:Show()
         C_Timer.After(duration - 0.2, function()
-            UIFrameFadeOut(self.Display, 0.2, 1, 0)
+            UIFrameFadeOut(ns.Display, 0.2, 1, 0)
         end)
     elseif hadFirestorm and not hasFirestorm then
-        self.Display:Hide()
+        ns.Display:Hide()
     end
 
     hadFirestorm = hasFirestorm
