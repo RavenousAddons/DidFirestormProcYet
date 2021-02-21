@@ -1,5 +1,5 @@
 ## Interface: 90002
-## Version: 1.0.2
+## Version: 1.0.3
 
 ## Name: Did Firestorm Proc Yet?
 ## Title: Did |cffff8000Firestorm|r Proc Yet?
@@ -10,7 +10,7 @@
 
 ## X-License: Public Domain
 ## X-Website: https://github.com/RavenousAddons/DidFirestormProcYet
-## X-Curse-Project-ID: 274452
-## X-WoWI-ID: 24005
+## X-Curse-Project-ID: 449195
+## X-WoWI-ID: 25893
 
 DidFirestormProcYet.xml
