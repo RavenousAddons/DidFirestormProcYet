@@ -11,9 +11,6 @@ L.Install = "Thanks for installing |cff%1$sv%2$s|r!" -- ns.color, ns.version
 L.Update = "Thanks for updating to |cff%1$sv%2$s|r!" -- ns.color, ns.version
 L.How = "Type |cff%1$s/%2$s sound|r to toggle sounds." -- ns.color, ns.command
 L.Support = "For feedback and support: |cff%1$s%2$s|r" -- ns.color ns.discord
-L.Sound = "Sounds are %s." -- ON/OFF
-L.On = "ON"
-L.Off = "OFF"
 
 local duration = 3.0
 local size = 128
@@ -93,10 +90,11 @@ end
 function DFPY_OnLoad(self)
     self:RegisterEvent("PLAYER_LOGIN")
     self:RegisterEvent("UNIT_AURA")
+    self:RegisterEvent("UNIT_SPELLCAST_START")
 end
 
 function DFPY_OnEvent(self, event, arg, ...)
-    if event == "UNIT_AURA" and arg == "player" then
+    if (event == "UNIT_AURA" or event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_END") and arg == "player" then
         DFPY_Check()
     elseif event == "PLAYER_LOGIN" then
         local _, class = UnitClass("player")
@@ -107,13 +105,14 @@ function DFPY_OnEvent(self, event, arg, ...)
             elseif DFPY_version ~= ns.version then
                 PrettyPrint("\n" .. string.format(L.Update, ns.color, ns.version, ns.command) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
             else
-                PrettyPrint(string.format(L.Sound, DFPY_sound and L.On or L.Off))
+                PrettyPrint(DFPY_sound and _G.SOUND_EFFECTS_ENABLED or _G.SOUND_EFFECTS_DISABLED)
             end
             DFPY_version = ns.version
             DFPY_Build()
             DFPY_Check()
         else
             self:UnregisterEvent("UNIT_AURA")
+            self:UnregisterEvent("UNIT_SPELLCAST_START")
         end
         self:UnregisterEvent("PLAYER_LOGIN")
     end
