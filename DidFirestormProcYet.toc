@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90005
 ## Version: 1.1.0
 
 ## Name: Did Firestorm Proc Yet?
