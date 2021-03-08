@@ -1,5 +1,7 @@
 # Did Firestorm Proc Yet?
 
+[![Ravenous Addons Discord](https://img.shields.io/badge/discord-Ravenous%20Addons-7289da)](https://discord.gg/9XeTpbcjzu) [![Buy me a coffee](https://img.shields.io/badge/help%20out-Buy%20me%20a%20coffee-81b3a0)](https://www.buymeacoffee.com/waldenpond)
+
 *Simple, dependency-free tracking for your Firestorm procs, whenever those may be...*
 
 # What does it do?
