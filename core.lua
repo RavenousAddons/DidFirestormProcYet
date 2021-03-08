@@ -104,8 +104,6 @@ function DFPY_OnEvent(self, event, arg, ...)
                 PrettyPrint("\n" .. string.format(L.Install, ns.color, ns.version) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
             elseif DFPY_version ~= ns.version then
                 PrettyPrint("\n" .. string.format(L.Update, ns.color, ns.version, ns.command) .. "\n" .. string.format(L.How, ns.color, ns.command) .. " " .. string.format(L.Sound, DFPY_sound and L.On or L.Off))
-            else
-                PrettyPrint(DFPY_sound and _G.SOUND_EFFECTS_ENABLED or _G.SOUND_EFFECTS_DISABLED)
             end
             DFPY_version = ns.version
             DFPY_Build()
@@ -123,7 +121,7 @@ SlashCmdList["DFPY"] = function(message, editbox)
         PrettyPrint(string.format(L.Version, ns.version))
     elseif string.match(message, "s") then
         DFPY_sound = not DFPY_sound
-        PrettyPrint(string.format(L.Sound, DFPY_sound and L.On or L.Off))
+        PrettyPrint(DFPY_sound and _G.SOUND_EFFECTS_ENABLED or _G.SOUND_EFFECTS_DISABLED)
     else
         PrettyPrint("\n" .. string.format(L.How, ns.color, ns.command) .. "\n" .. string.format(L.Support, ns.color, ns.discord))
     end

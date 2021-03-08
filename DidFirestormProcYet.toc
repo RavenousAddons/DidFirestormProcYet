@@ -1,5 +1,5 @@
 ## Interface: 90002
-## Version: 1.0.6
+## Version: 1.1.0
 
 ## Name: Did Firestorm Proc Yet?
 ## Title: Did |cffff8000Firestorm|r Proc Yet?
