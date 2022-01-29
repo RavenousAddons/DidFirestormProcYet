@@ -10,7 +10,6 @@ L.Version = "%s is the current version." -- ns.version
 L.Install = "Thanks for installing |cff%1$sv%2$s|r!" -- ns.color, ns.version
 L.Update = "Thanks for updating to |cff%1$sv%2$s|r!" -- ns.color, ns.version
 L.How = "Type |cff%1$s/%2$s sound|r to toggle sounds." -- ns.color, ns.command
-L.Support = "For feedback and support: |cff%1$s%2$s|r" -- ns.color ns.discord
 
 local duration = 3.0
 local size = 128
@@ -123,7 +122,7 @@ SlashCmdList["DFPY"] = function(message, editbox)
         DFPY_sound = not DFPY_sound
         PrettyPrint(DFPY_sound and _G.SOUND_EFFECTS_ENABLED or _G.SOUND_EFFECTS_DISABLED)
     else
-        PrettyPrint("\n" .. string.format(L.How, ns.color, ns.command) .. "\n" .. string.format(L.Support, ns.color, ns.discord))
+        PrettyPrint("\n" .. string.format(L.How, ns.color, ns.command))
     end
 end
 SLASH_DFPY1 = "/" .. ns.command
